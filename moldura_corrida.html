@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+--xxx
+<html>
+<head>
+  <title>Moldura Corrida</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://upload-widget.cloudinary.com/global/all.js"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffb6c1 0%, #ff69b4 100%);
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    h2 {
+      color: #fff;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #e75480aa;
+    }
+    #upload_widget {
+      background: #fff;
+      color: #e75480;
+      border: none;
+      border-radius: 30px;
+      padding: 0.9rem 2.2rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #e7548033;
+      transition: background 0.2s, color 0.2s;
+      margin-bottom: 2rem;
+    }
+    #upload_widget:hover {
+      background: #e75480;
+      color: #fff;
+    }
+    #resultado {
+      background: #fff8fa;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px #e7548033;
+      padding: 2rem 2.5rem;
+      margin-top: 1.5rem;
+      text-align: center;
+      min-width: 320px;
+      max-width: 90vw;
+    }
+    #resultado img {
+      border-radius: 12px;
+      margin-top: 1rem;
+      box-shadow: 0 2px 12px #e7548033;
+    }
+    #resultado a {
+      display: inline-block;
+      margin-top: 1.2rem;
+      background: #e75480;
+      color: #fff;
+      padding: 0.7rem 1.6rem;
+      border-radius: 22px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+    #resultado a:hover {
+      background: #ff69b4;
+    }
+    @media (max-width: 600px) {
+      #resultado {
+        padding: 1rem 0.5rem;
+        min-width: unset;
+      }
+      h2 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h2>Envie sua foto de corrida</h2>
+<button id="upload_widget">Enviar Foto</button>
+
+<div id="resultado"></div>
+
+<script>
+  var myWidget = cloudinary.createUploadWidget({
+    cloudName: 'dbpefj4xo',
+    uploadPreset: 'upload_corrida'
+  }, (error, result) => {
+    console.log('Cloudinary callback:', { error, result });
+    if (error) {
+      console.error('Erro Cloudinary:', error);
+      document.getElementById("resultado").innerHTML = `<p style='color:red;'>Erro: ${error.message || error}</p>`;
+      return;
+    }
+    if (result) {
+      console.log('Evento Cloudinary:', result.event, result);
+    }
+    if (result && result.event === "success") {
+      let publicId = result.info.public_id;
+      let urlFinal = `https://res.cloudinary.com/dbpefj4xo/image/upload/l_correbel_atletaconfirmada.png_b4adfx/${publicId}`;
+      document.getElementById("resultado").innerHTML = `
+        <p>Sua foto pronta 👇</p>
+        <img src="${urlFinal}" width="300"/>
+        <br><br>
+        <a href="${urlFinal}" download>Baixar Foto</a>
+      `;
+    }
+  });
+
+  document.getElementById("upload_widget").addEventListener("click", function(){
+    myWidget.open();
+  }, false);
+</script>
+
+</body>
+</html>
