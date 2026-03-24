@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+--xxx
 <html>
 <head>
   <title>Moldura Corrida</title>
@@ -14,13 +15,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      padding: 0 0.5rem;
     }
     h2 {
       color: #fff;
-      font-size: 2.2rem;
+      font-size: 2.1rem;
       font-weight: 700;
-      margin-bottom: 1.5rem;
+      margin: 2.2rem 0 1.5rem 0;
       text-align: center;
       letter-spacing: 1px;
       text-shadow: 0 2px 8px #e75480aa;
@@ -30,13 +32,19 @@
       color: #e75480;
       border: none;
       border-radius: 30px;
-      padding: 0.9rem 2.2rem;
-      font-size: 1.1rem;
+      padding: 1.1rem 2.5rem;
+      font-size: 1.2rem;
       font-weight: 700;
       cursor: pointer;
       box-shadow: 0 2px 8px #e7548033;
       transition: background 0.2s, color 0.2s;
-      margin-bottom: 2rem;
+      margin-bottom: 2.2rem;
+      width: 100%;
+      max-width: 350px;
+      outline: none;
+    }
+    #upload_widget:active, #upload_widget:focus {
+      outline: 2px solid #e75480;
     }
     #upload_widget:hover {
       background: #e75480;
@@ -46,39 +54,59 @@
       background: #fff8fa;
       border-radius: 18px;
       box-shadow: 0 2px 12px #e7548033;
-      padding: 2rem 2.5rem;
-      margin-top: 1.5rem;
+      padding: 1.5rem 1.2rem;
+      margin-top: 1.2rem;
       text-align: center;
-      min-width: 320px;
-      max-width: 90vw;
+      min-width: 0;
+      width: 100%;
+      max-width: 400px;
+      word-break: break-word;
     }
     #resultado img {
       border-radius: 12px;
       margin-top: 1rem;
       box-shadow: 0 2px 12px #e7548033;
+      width: 100%;
+      max-width: 320px;
+      height: auto;
     }
     #resultado a {
       display: inline-block;
       margin-top: 1.2rem;
       background: #e75480;
       color: #fff;
-      padding: 0.7rem 1.6rem;
+      padding: 0.9rem 2.2rem;
       border-radius: 22px;
       text-decoration: none;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.08rem;
       transition: background 0.2s;
+      width: 100%;
+      max-width: 250px;
     }
     #resultado a:hover {
       background: #ff69b4;
     }
     @media (max-width: 600px) {
-      #resultado {
-        padding: 1rem 0.5rem;
-        min-width: unset;
-      }
       h2 {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
+        margin-top: 1.2rem;
+      }
+      #upload_widget {
+        font-size: 1rem;
+        padding: 1rem 1.2rem;
+        max-width: 100%;
+      }
+      #resultado {
+        padding: 1rem 0.3rem;
+        max-width: 98vw;
+      }
+      #resultado img {
+        max-width: 95vw;
+      }
+      #resultado a {
+        font-size: 0.98rem;
+        padding: 0.8rem 1.1rem;
       }
     }
   </style>
