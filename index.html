@@ -93,7 +93,11 @@
 <script>
   var myWidget = cloudinary.createUploadWidget({
     cloudName: 'dbpefj4xo',
-    uploadPreset: 'upload_corrida'
+    uploadPreset: 'upload_corrida',
+    cropping: true,
+    croppingAspectRatio: 9 / 16,
+    croppingCoordinatesMode: 'custom',
+    showSkipCropButton: false
   }, (error, result) => {
     console.log('Cloudinary callback:', { error, result });
     if (error) {
@@ -106,7 +110,9 @@
     }
     if (result && result.event === "success") {
       let publicId = result.info.public_id;
-      let urlFinal = `https://res.cloudinary.com/dbpefj4xo/image/upload/c_fill,g_face,w_1080,h_1920/f_auto,q_auto/l_correbel_atletaconfirmada.png_b4adfx,w_1080,h_1920,c_fill/fl_layer_apply/${publicId}`;
+      let temRecorteManual = Array.isArray(result.info.custom_coordinates) || !!result.info.custom_coordinates;
+      let gravidade = temRecorteManual ? 'g_custom' : 'g_auto';
+      let urlFinal = `https://res.cloudinary.com/dbpefj4xo/image/upload/c_fill,${gravidade},w_1080,h_1920/f_auto,q_auto/l_correbel_atletaconfirmada.png_b4adfx,w_1080,h_1920,c_fill/fl_layer_apply/${publicId}`;
       document.getElementById("resultado").innerHTML = `
         <p>Sua foto pronta 👇</p>
         <img src="${urlFinal}" width="300"/>
