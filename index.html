@@ -106,7 +106,7 @@
     }
     if (result && result.event === "success") {
       let publicId = result.info.public_id;
-      let urlFinal = `https://res.cloudinary.com/dbpefj4xo/image/upload/w_1000,h_1000,c_fit/l_correbel_atletaconfirmada.png_b4adfx/${publicId}`;
+      let urlFinal = `https://res.cloudinary.com/dbpefj4xo/image/upload/c_fill,g_auto,w_1080,h_1920/f_auto,q_auto/l_correbel_atletaconfirmada.png_b4adfx,w_1080,h_1920,c_fill/fl_layer_apply/${publicId}`;
       document.getElementById("resultado").innerHTML = `
         <p>Sua foto pronta 👇</p>
         <img src="${urlFinal}" width="300"/>
